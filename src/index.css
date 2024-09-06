@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+#root {
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainCheckbox {
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+}
+
+.taskDone {
+  text-decoration: line-through;
+}
