@@ -31,8 +31,8 @@ export default function Tasks({ category }) {
 
   return (
     <>
-      <div className="border border-zinc-500 p-10 pl-5 overflow-scroll">
-        <h1 className="font-bold text-5xl mb-10">{category}</h1>
+      <div className="border-[4px] border-zinc-200 pl-5 pt-5 pr-5 max-w-[30%] overflow-scroll scrollbar">
+        <h1 className="font-bold text-2xl mb-3">{category}</h1>
         {tasks.map((item) => (
           <div
             key={item._id + "container"}
@@ -51,7 +51,7 @@ export default function Tasks({ category }) {
             >
               <h1
                 key={item._id}
-                className={`text-2xl ${
+                className={`text-xl ${
                   finishedTasks.includes(item._id) && "taskDone"
                 }`}
               >

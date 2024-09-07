@@ -4,8 +4,9 @@ import Tasks from "./Tasks";
 export default function TaskHub() {
   return (
     <>
-      <div className="pl-10 pt-10 bg-slate-100 flex flex-column w-full">
+      <div className="p-6 bg-slate-100 flex flex-column w-full">
         <Tasks category="Today" />
+        
       </div>
     </>
   );
