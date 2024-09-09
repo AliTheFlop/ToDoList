@@ -1,5 +1,5 @@
 # Task List App
 
-This is a modern app to help keep track of tasks in a simple yet effective way.
+Literally a Task / To-Do List app, it keeps track of them.
 
-Think something like Todoist :)
+It uses the MERN stack & has a modern UI.
