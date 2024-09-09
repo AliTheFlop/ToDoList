@@ -58,7 +58,7 @@ export default function Tasks({ category }) {
                 {item.name}
               </h1>
               <p key={item._id + "dueDate"} className="italic text-sm">
-                {item.endDate}
+                {item.dueDate}
               </p>
             </div>
           </div>

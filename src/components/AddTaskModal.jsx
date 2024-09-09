@@ -1,9 +1,21 @@
 import Modal from "react-modal";
+import axios from "axios";
 
 Modal.setAppElement(document.getElementById("root"));
 
 // eslint-disable-next-line react/prop-types
 export default function AddTaskModal({ isOpen, handleClose }) {
+  function handleAddTask(taskData) {
+    axios
+      .post("http://localhost:3000/api/tasks", taskData)
+      .then((response) => {
+        console.log("Task added successfully: " + response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <Modal
