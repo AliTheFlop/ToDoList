@@ -3,12 +3,11 @@ import AddTaskModal from "./AddTaskModal";
 import iconMap from "./iconMap";
 import { useState } from "react";
 
-export default function SidebarButton({ name }) {
+export default function SidebarButton({ name, refreshTasks }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
-    console.log(name);
-    name === "Add Task" ? setIsOpen(true) : null;
+    setIsOpen(true);
   }
 
   function handleClose() {
@@ -26,7 +25,13 @@ export default function SidebarButton({ name }) {
         <span className="text-xl text-gray-800">{name}</span>
       </button>
 
-      {isOpen && <AddTaskModal isOpen={isOpen} handleClose={handleClose} />}
+      {isOpen && (
+        <AddTaskModal
+          isOpen={isOpen}
+          handleClose={handleClose}
+          refreshTasks={refreshTasks}
+        />
+      )}
     </>
   );
 }

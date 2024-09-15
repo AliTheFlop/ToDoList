@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // eslint-disable-next-line react/prop-types
-export default function Tasks({ category }) {
+export default function Tasks({ refreshTrigger }) {
   const [tasks, setTasks] = useState([]);
-  const [finishedTasks, setFinishedTasks] = useState([]);
 
-  function handleCheckbox(id) {
-    setFinishedTasks((prevTasks) => {
-      if (prevTasks.includes(id)) {
-        return prevTasks.filter((taskId) => taskId !== id);
-      } else {
-        return [...prevTasks, id];
-      }
-    });
+  function handleDeleteTask(item) {
+    axios
+      .delete("http://localhost:3000/api/tasks", {
+        data: { source: item },
+      })
+      .then((response) => {
+        console.log(response);
+        setTasks((prevTasks) => {
+          let newTasks = [];
+          prevTasks.map((prevTaskItem) => {
+            prevTaskItem._id != item._id ? newTasks.push(prevTaskItem) : null;
+          });
+          return newTasks;
+        });
+      });
   }
 
   useEffect(() => {
@@ -25,14 +31,13 @@ export default function Tasks({ category }) {
         console.error(error);
       }
     };
-
     fetchTasks();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
     <>
-      <div className="border-[4px] border-zinc-200 pl-5 pt-5 pr-5 max-w-[30%] overflow-scroll scrollbar">
-        <h1 className="font-bold text-2xl mb-3">{category}</h1>
+      <div className="border-[4px] border-zinc-200 pl-5 pt-5 pr-5 w-[80%] overflow-scroll scrollbar">
+        <h1 className="font-bold text-2xl mb-3">Tasks</h1>
         {tasks.map((item) => (
           <div
             key={item._id + "container"}
@@ -42,19 +47,14 @@ export default function Tasks({ category }) {
               type="checkbox"
               className="mainCheckbox mr-9"
               onClick={() => {
-                handleCheckbox(item._id);
+                handleDeleteTask(item);
               }}
             />
             <div
               key={item._id + "div"}
               className="flex flex-col justify-center"
             >
-              <h1
-                key={item._id}
-                className={`text-xl ${
-                  finishedTasks.includes(item._id) && "taskDone"
-                }`}
-              >
+              <h1 key={item._id} className={`text-xl`}>
                 {item.name}
               </h1>
               <p key={item._id + "dueDate"} className="italic text-sm">

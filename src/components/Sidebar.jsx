@@ -1,7 +1,8 @@
 import sidebarLogo from "../assets/iconSidebar.svg";
 import SidebarButton from "./SidebarButton";
 
-export default function Sidebar() {
+// eslint-disable-next-line react/prop-types
+export default function Sidebar({ refreshTasks }) {
   return (
     <>
       <div className="border-r border-gray-200 min-h-screen w-1/6 bg-cyan-100">
@@ -17,7 +18,7 @@ export default function Sidebar() {
 
         <div className="pl-3 pt-10">
           <h1 className="font-bold text-3xl text-cyan-600 pb-2">Options</h1>
-          <SidebarButton name="Add Task" />
+          <SidebarButton name="Add Task" refreshTasks={refreshTasks} />
         </div>
       </div>
     </>

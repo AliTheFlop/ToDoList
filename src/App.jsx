@@ -1,14 +1,19 @@
 import Sidebar from "./components/Sidebar";
 import TaskHub from "./components/TaskHub";
-
-//TODO: RESTful API Backend (expressjs)
-// Only do a basic to do app -> Add Update Delete. No point in the other, its just design atp
+import { useState } from "react";
 
 function App() {
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  const refreshTasks = () => {
+    // Update the refreshTrigger to a new value
+    setRefreshTrigger((prev) => prev + 1);
+  };
+
   return (
     <>
-      <Sidebar />
-      <TaskHub />
+      <Sidebar refreshTasks={refreshTasks} />
+      <TaskHub refreshTrigger={refreshTrigger} />
     </>
   );
 }
